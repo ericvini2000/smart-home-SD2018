@@ -4,7 +4,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.io.*;
 
-
 public class Cliente {
 
 	public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException {
@@ -22,5 +21,4 @@ public class Cliente {
 		ar = (ArCondicionado) in.readObject();
 		ar.printStats();
 	}
-
 }

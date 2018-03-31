@@ -2,39 +2,31 @@ package smartHomeSocket;
 
 import java.io.Serializable;
 
-public class ArCondicionado implements Serializable {
+public class TV implements Serializable{
 	
 	private static int idAux = 0;
 	private int id;
-	private int temperatura;
 	private boolean isOn;
+	private int ch;
 	
-	ArCondicionado(){
+	TV(){
 		this.id = idAux;
 		idAux++;
-		this.temperatura = 24;
-		this.isOn = false;	
+		this.isOn = false;
 	}
 	
 	public int getID() {
 		return this.id;
 	}
 	
-	public int getTemp() {
-		return this.temperatura;
-	}
-	
 	public boolean isOn() {
 		return this.isOn;
 	}
-	
-	public void setTemp(int temperatura) {
-		this.temperatura = temperatura;
-	}
-	
+		
 	public void ligaDesliga() {
 		if(this.isOn()) {
 			this.isOn = false;
+			this.ch = 10;
 		} else {
 			this.isOn = true;
 		}
@@ -47,9 +39,17 @@ public class ArCondicionado implements Serializable {
 		} else {
 			stats = "Desligado";
 		}
-		System.out.println("--- Aparelho Condicionador de Ar ---");
+		System.out.println("--- Televisor ---");
 		System.out.print("ID: " + this.id + "\t");
 		System.out.println("Status atual: " + stats);
-		System.out.println("Temperatura atual: " + this.temperatura);
+	}
+	
+	public void mudaCanal(int ch) {
+		if(this.isOn()) {
+			System.out.println("Mudando para o canal " + ch);
+			this.ch = ch;
+		} else {
+			System.out.println("Televisor desligado.");
+		}
 	}
 }

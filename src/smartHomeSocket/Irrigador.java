@@ -2,34 +2,43 @@ package smartHomeSocket;
 
 import java.io.Serializable;
 
-public class ArCondicionado implements Serializable {
+public class Irrigador implements Serializable {
 	
 	private static int idAux = 0;
 	private int id;
-	private int temperatura;
 	private boolean isOn;
+	private int vel;
 	
-	ArCondicionado(){
+	Irrigador(){
 		this.id = idAux;
 		idAux++;
-		this.temperatura = 24;
-		this.isOn = false;	
+		this.isOn = false;
+		this.vel = 0;
 	}
 	
 	public int getID() {
 		return this.id;
 	}
 	
-	public int getTemp() {
-		return this.temperatura;
-	}
-	
 	public boolean isOn() {
 		return this.isOn;
 	}
 	
-	public void setTemp(int temperatura) {
-		this.temperatura = temperatura;
+	public int getVel() {
+		return this.vel;
+	}
+	
+	public void setVel(int vel) {
+		if(this.isOn()) {
+			if(vel > 3) {
+				System.out.println("Por favor, selecione uma velocidade entre 1-3.");
+			} else {
+				this.vel = vel;
+			}
+		} else {
+			System.out.println("Irrigador de ID " + this.id + " desligado.");
+		}
+		System.out.println("Velocidade atual: " + this.vel);
 	}
 	
 	public void ligaDesliga() {
@@ -47,9 +56,8 @@ public class ArCondicionado implements Serializable {
 		} else {
 			stats = "Desligado";
 		}
-		System.out.println("--- Aparelho Condicionador de Ar ---");
+		System.out.println("--- Irrigador ---");
 		System.out.print("ID: " + this.id + "\t");
 		System.out.println("Status atual: " + stats);
-		System.out.println("Temperatura atual: " + this.temperatura);
 	}
 }

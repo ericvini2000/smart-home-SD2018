@@ -6,19 +6,16 @@ import java.io.*;
 
 public class Cliente {
 
-	public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException {
+	public static void main(String[] args) throws EOFException, UnknownHostException, IOException, ClassNotFoundException {
 		Socket cliente = new Socket("localhost", 3000);
 		ObjectOutput out = new ObjectOutputStream(cliente.getOutputStream());
 		ObjectInput in = new ObjectInputStream(cliente.getInputStream());
-		ArCondicionado ar = new ArCondicionado();
-		ar.printStats();
+		Casa c = new Casa();
+		c.printCasa();
 		System.out.println("Enviando ao servidor...");
-		System.out.println("-----------");
-		System.out.println("-----------");
-		System.out.println("-----------");
-		out.writeObject(ar);
+		out.writeObject(c);
 		out.flush();
-		ar = (ArCondicionado) in.readObject();
-		ar.printStats();
+		c = (Casa) in.readObject();
+		c.printCasa();
 	}
 }

@@ -41,7 +41,7 @@ public class Geladeira implements Serializable {
 	}
 	
 	public void ligaDesliga() {
-		if(this.isOn == true) {
+		if(this.isOn()) {
 			this.isOn = false;
 		} else {
 			this.isOn = true;
@@ -51,9 +51,9 @@ public class Geladeira implements Serializable {
 	public void printStats() {
 		String stats;
 		if(this.isOn == true) {
-			stats = "Ligado";
+			stats = "Ligada";
 		} else {
-			stats = "Desligado";
+			stats = "Desligada";
 		}
 		System.out.println("--- Geladeira ---");
 		System.out.print("ID: " + this.id + "\t");
@@ -63,7 +63,7 @@ public class Geladeira implements Serializable {
 	
 	public void printItens() {
 		for(int i = 0; i < itens.size(); i++) {
-			System.out.println(itens);
+			System.out.println(itens.get(i));
 		}
 	}
 	
